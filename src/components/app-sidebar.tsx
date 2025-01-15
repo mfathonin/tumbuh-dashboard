@@ -15,14 +15,16 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavigationRoutes } from "@/lib/constants";
+import { User } from "@supabase/supabase-js";
 
-const userProfile = {
-  name: "shadcn",
-  email: "m@example.com",
-  avatar: "/avatars/shadcn.jpg",
+type AppSidebarProps = {
+  user: User;
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  user,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & AppSidebarProps) {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -47,7 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSections label="Tools" items={NavigationRoutes.tools} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUserProfile user={userProfile} />
+        <NavUserProfile user={user} />
       </SidebarFooter>
     </Sidebar>
   );
