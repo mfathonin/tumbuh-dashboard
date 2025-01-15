@@ -10,7 +10,7 @@ export default async function AuthCodeErrorPage({
     <div className="flex flex-col bg-card text-card-foreground rounded-xl shadow border p-6 gap-5 justify-around">
       <h1 className="text-xl font-semibold">Authentication Error</h1>
       <div>
-        <p>{errorDesc ?? "Something went wrong when authenticate you."}</p>
+        <p>{errorDesc ?? "Something went wrong when authenticating you."}</p>
         <p className="text-sm opacity-60">
           Code: {errorCode ?? "unknown_error"}
         </p>

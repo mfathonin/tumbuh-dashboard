@@ -27,11 +27,11 @@ export default function LoginPage() {
             />
           </div>
           <div className="grid gap-2">
-            <div className="flex items-center h-5">
+            <div className="flex h-5 justify-between items-baseline">
               <Label htmlFor="password">Password</Label>
-            </div>
-            <div className="text-sm text-muted-foreground mb-2">
-              Password must be at least 8 characters long and contain uppercase, lowercase, number, and special characters.
+              <div className="text-xs text-muted-foreground mb-2">
+                8 chars, alphanumeric, special char.
+              </div>
             </div>
             <Input
               name="password"
