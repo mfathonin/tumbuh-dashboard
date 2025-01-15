@@ -36,12 +36,12 @@ export default function LoginPage() {
             />
             <div className="flex items-center h-5">
               <Label htmlFor="password">Password</Label>
-              <a
-                href="#"
+              <Link
+                href="/auth/reset-password"
                 className="ml-auto text-sm underline-offset-4 hover:underline"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
           <Button type="submit" className="w-full">
