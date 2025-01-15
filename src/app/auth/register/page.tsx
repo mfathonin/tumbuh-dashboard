@@ -27,10 +27,10 @@ export default function LoginPage() {
             />
           </div>
           <div className="grid gap-2">
-            <div className="flex h-5 justify-between items-baseline">
+            <div className="flex h-5 justify-between items-center">
               <Label htmlFor="password">Password</Label>
-              <div className="text-xs text-muted-foreground mb-2">
-                8 chars, alphanumeric, special char.
+              <div className="text-xs text-muted-foreground italic">
+                8 Chars, Alphanumeric, Special Char.
               </div>
             </div>
             <Input
