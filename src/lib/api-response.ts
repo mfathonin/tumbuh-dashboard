@@ -1,8 +1,8 @@
 import { ErrorCodes } from "@/models";
 import { NextResponse } from "next/server";
 
-export namespace ApiResponseHandler {
-  export function success<T>(data: T, status: number = 200) {
+export class ApiResponseHandler {
+  static success<T>(data: T, status: number = 200) {
     return NextResponse.json(
       {
         success: true,
@@ -12,7 +12,7 @@ export namespace ApiResponseHandler {
     );
   }
 
-  export function error(error: ErrorCodes) {
+  static error(error: ErrorCodes) {
     return NextResponse.json(
       {
         success: false,
