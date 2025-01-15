@@ -33,9 +33,17 @@ export async function GET(request: NextRequest) {
       const newResponse = NextResponse.redirect(redirectTo);
 
       if (session?.access_token)
-        newResponse.cookies.set("sb-access-token", session.access_token);
+        newResponse.cookies.set("sb-access-token", session.access_token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "lax",
+        });
       if (session?.refresh_token)
-        newResponse.cookies.set("sb-refresh-token", session.refresh_token);
+        newResponse.cookies.set("sb-refresh-token", session.refresh_token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "lax",
+        });
       return newResponse;
     } else {
       if (error?.code) redirectTo.searchParams.set("error_code", error.code);

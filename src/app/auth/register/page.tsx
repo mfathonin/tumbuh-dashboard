@@ -30,12 +30,18 @@ export default function LoginPage() {
             <div className="flex items-center h-5">
               <Label htmlFor="password">Password</Label>
             </div>
+            <div className="text-sm text-muted-foreground mb-2">
+              Password must be at least 8 characters long and contain uppercase, lowercase, number, and special characters.
+            </div>
             <Input
               name="password"
               minLength={8}
               type="password"
               required
               placeholder="Password"
+              autoComplete="new-password"
+              spellCheck="false"
+              autoCapitalize="none"
             />
           </div>
           <Button type="submit" className="w-full">
