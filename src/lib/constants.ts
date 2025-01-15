@@ -21,7 +21,7 @@ export type NavigationItem = {
   items?: ChildNavItem[];
 };
 
-export const NavigationRoutes: Record<string, NavigationItem[]> = {
+export const NavigationRoutes = {
   navMain: [
     {
       title: "Dashboard",
@@ -68,7 +68,7 @@ export const NavigationRoutes: Record<string, NavigationItem[]> = {
         },
       ],
     },
-  ],
+  ] as NavigationItem[],
   tools: [
     {
       title: "Wallet Sync",
@@ -85,5 +85,61 @@ export const NavigationRoutes: Record<string, NavigationItem[]> = {
       url: "/manage-data",
       icon: Server,
     },
-  ],
+  ] as NavigationItem[],
 };
+
+export function getTitlesAndUrls(pathName: string) {
+  const titles: string[] = [];
+  const urls: string[] = [];
+
+  // Iterate over all sections in NavigationRoutes (including both navMain and tools)
+  Object.values(NavigationRoutes).forEach((sections) => {
+    sections.forEach((section) => {
+      // Check if the section URL matches the pathName (parent path match)
+      if (section.url === pathName) {
+        titles.push(section.title);
+        urls.push(section.url);
+      }
+
+      // If this section has items, check them for the pathName (sub-path match)
+      if (section.items) {
+        section.items.forEach((item) => {
+          if (item.url === pathName) {
+            titles.push(section.title, item.title);
+            urls.push(section.url, item.url);
+          }
+        });
+      }
+    });
+  });
+
+  return { titles, urls };
+}
+
+export const Errors = {
+  auth: {
+    INVALID_CREDENTIALS: {
+      message: "Email & password not found",
+      code: "AUTH_INVALID_CREDENTIAL",
+      status: 404,
+    },
+    USER_EXIST: {
+      message: "User already registered",
+      code: "AUTH_USER_EXIST",
+      status: 400,
+    },
+  },
+  general: {
+    INVALID_FORMAT: {
+      message: "Invalid Data format",
+      code: "INVALID_FORMAT",
+      status: 400,
+    },
+    INVALID_UUID: {
+      message: "Invalid ID format",
+      code: "INVALID_UUID",
+      status: 400,
+    },
+    UNKNOWN: { message: "Something went wrong", code: "UNKNOWN", status: 500 },
+  },
+} as const;

@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import Form from "next/form";
+import { loginWithPassword } from "@/app/auth/actions";
 
 export default function LoginPage() {
   return (
@@ -12,27 +14,41 @@ export default function LoginPage() {
           Or login with
         </span>
       </div>
-      <div className="grid gap-6">
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
-        </div>
-        <div className="grid gap-2">
-          <div className="flex items-center h-5">
-            <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
+      <Form action={loginWithPassword}>
+        <div className="grid gap-6">
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              name="email"
+              type="email"
+              minLength={1}
+              placeholder="name@example.com"
+              required
+            />
           </div>
-          <Input id="password" type="password" required />
+          <div className="flex gap-2 flex-col-reverse">
+            <Input
+              name="password"
+              minLength={8}
+              type="password"
+              required
+              placeholder="Password"
+            />
+            <div className="flex items-center h-5">
+              <Label htmlFor="password">Password</Label>
+              <a
+                href="#"
+                className="ml-auto text-sm underline-offset-4 hover:underline"
+              >
+                Forgot your password?
+              </a>
+            </div>
+          </div>
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
         </div>
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-      </div>
+      </Form>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}
         <Link href={"./register"} className="underline underline-offset-4">

@@ -6,9 +6,21 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { createClient } from "@/lib/supaclient/server";
+import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+
   return (
     <SidebarProvider>
       <AppSidebar />
