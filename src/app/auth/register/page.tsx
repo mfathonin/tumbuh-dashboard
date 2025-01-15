@@ -2,7 +2,9 @@ import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Form from "next/form";
 import Link from "next/link";
+import { signUpWithEmailPassword } from "../actions";
 
 export default function LoginPage() {
   return (
@@ -12,21 +14,35 @@ export default function LoginPage() {
           Or sign up with
         </span>
       </div>
-      <div className="grid gap-6">
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
-        </div>
-        <div className="grid gap-2">
-          <div className="flex items-center h-5">
-            <Label htmlFor="password">Password</Label>
+      <Form action={signUpWithEmailPassword}>
+        <div className="grid gap-6">
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              name="email"
+              type="email"
+              minLength={1}
+              placeholder="name@example.com"
+              required
+            />
           </div>
-          <Input id="password" type="password" required />
+          <div className="grid gap-2">
+            <div className="flex items-center h-5">
+              <Label htmlFor="password">Password</Label>
+            </div>
+            <Input
+              name="password"
+              minLength={8}
+              type="password"
+              required
+              placeholder="Password"
+            />
+          </div>
+          <Button type="submit" className="w-full">
+            Sign up
+          </Button>
         </div>
-        <Button type="submit" className="w-full">
-          Sign up
-        </Button>
-      </div>
+      </Form>
       <div className="text-center text-sm">
         Have an account?{" "}
         <Link href="./login" className="underline underline-offset-4">
