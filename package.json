@@ -3,10 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "pnpm supa:start",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "supa:start": "pnpm dlx supabase start",
+    "postsupa:start": "pnpm supa:setup:local && pnpm supa:typegen:local",
+    "supa:stop": "pnpm dlx supabase stop --no-backup",
+    "supa:stop:backup": "pnpm dlx supabase stop",
+    "supa:setup:local": "pnpm dlx supabase status -o env | ./scripts/mapLocalConf.sh > .env.local",
+    "supa:typegen": "pnpm dlx supabase gen types typescript > src/models/supaservice.types.ts",
+    "supa:typegen:local": "pnpm dlx supabase gen types typescript --local > src/models/supaservice.types.ts",
+    "supa:migration:down": "./scripts/migrateDown.sh",
+    "supa:migration:reset": "pnpm dlx supabase db reset --local",
+    "supa:migration:push": "pnpm dlx supabase db push"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
