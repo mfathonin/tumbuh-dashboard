@@ -13,8 +13,8 @@
     "supa:stop": "pnpm dlx supabase stop --no-backup",
     "supa:stop:backup": "pnpm dlx supabase stop",
     "supa:setup:local": "pnpm dlx supabase status -o env | ./scripts/mapLocalConf.sh > .env.local",
-    "supa:typegen": "pnpm dlx supabase gen types typescript > src/models/supaservice.types.ts",
-    "supa:typegen:local": "pnpm dlx supabase gen types typescript --local > src/models/supaservice.types.ts",
+    "supa:typegen": "pnpm dlx supabase gen types typescript > src/models/supatypes.ts",
+    "supa:typegen:local": "pnpm dlx supabase gen types typescript --local > src/models/supatypes.ts",
     "supa:migration:down": "./scripts/migrateDown.sh",
     "supa:migration:reset": "pnpm dlx supabase db reset --local",
     "supa:migration:push": "pnpm dlx supabase db push"

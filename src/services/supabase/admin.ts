@@ -1,6 +1,6 @@
 "use server";
 
-import { Database } from "@/models/supaservice.types";
+import { Database } from "@/models";
 import { createClient } from "@supabase/supabase-js";
 
 export const createAdminClient = () => {

@@ -1,25 +1,14 @@
+import { NavigationItem } from "@/models";
 import {
   ArrowRightLeft,
   ChartSpline,
   Combine,
   LayoutDashboard,
-  LucideIcon,
   ScrollText,
   Server,
   Settings,
   WalletCards,
 } from "lucide-react";
-
-type ChildNavItem = {
-  title: string;
-  url: string;
-};
-export type NavigationItem = {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  items?: ChildNavItem[];
-};
 
 export const NavigationRoutes = {
   navMain: [
@@ -39,16 +28,16 @@ export const NavigationRoutes = {
       icon: WalletCards,
       items: [
         {
+          title: "Wallets",
+          url: "/finances/wallets",
+        },
+        {
           title: "Goals",
           url: "/finances/goals",
         },
         {
           title: "Budgets",
           url: "/finances/budgets",
-        },
-        {
-          title: "Wallets",
-          url: "/finances/wallets",
         },
       ],
     },

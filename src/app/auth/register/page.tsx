@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Form from "next/form";
 import Link from "next/link";
-import { signUpWithEmailPassword } from "../actions";
+import { signUpWithEmailPassword } from "@/features/auth";
 
 export default function LoginPage() {
   return (

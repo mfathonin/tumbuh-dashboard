@@ -14,7 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NavigationRoutes } from "@/lib/constants";
+import { NavigationRoutes } from "@/libs/constants";
 import { User } from "@supabase/supabase-js";
 
 type AppSidebarProps = {

@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 import {
   Collapsible,
@@ -18,8 +19,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import type { NavigationItem } from "@/lib/constants";
-import { usePathname } from "next/navigation";
+import type { NavigationItem } from "@/models";
 
 export const NavSections = ({
   label,
@@ -43,7 +43,9 @@ export const NavSections = ({
                 <SidebarMenuButton asChild tooltip={item.title}>
                   <a href={item.url}>
                     {!!item.icon && <item.icon className="size-6" />}
-                    <span>{item.title}</span>
+                    <span className={isActive ? "font-semibold" : ""}>
+                      {item.title}
+                    </span>
                   </a>
                 </SidebarMenuButton>
                 {item.items?.length ? (
@@ -56,15 +58,26 @@ export const NavSections = ({
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
-                              <a href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
+                        {item.items?.map((subItem) => {
+                          const isChildSelected =
+                            isActive && paths === subItem.url;
+
+                          return (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton asChild>
+                                <a href={subItem.url}>
+                                  <span
+                                    className={
+                                      isChildSelected ? "font-semibold" : ""
+                                    }
+                                  >
+                                    {subItem.title}
+                                  </span>
+                                </a>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   </>

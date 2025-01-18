@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Form from "next/form";
-import { loginWithPassword } from "@/app/auth/actions";
+import { loginWithPassword } from "@/features/auth";
 
 export default function LoginPage() {
   return (

@@ -6,7 +6,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { createClient } from "@/lib/supaclient/server";
+import { createClient } from "@/services/supabase/server";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 

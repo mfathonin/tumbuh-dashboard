@@ -1,2 +1,2 @@
-export * from "./supaservice.types";
+export * from "./supatypes";
 export * from "./general";

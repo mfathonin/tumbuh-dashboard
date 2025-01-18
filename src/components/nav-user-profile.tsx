@@ -25,7 +25,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { logout } from "@/app/auth/actions";
+import { logout } from "@/features/auth";
 import { User } from "@supabase/supabase-js";
 
 export function NavUserProfile({ user }: { user: User }) {

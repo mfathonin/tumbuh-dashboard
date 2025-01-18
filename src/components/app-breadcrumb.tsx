@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { getTitlesAndUrls } from "@/lib/constants";
+import { getTitlesAndUrls } from "@/libs/constants";
 import { usePathname } from "next/navigation";
 import React from "react";
 
