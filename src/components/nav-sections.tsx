@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import {
@@ -41,12 +42,12 @@ export const NavSections = ({
             <Collapsible key={item.title} asChild defaultOpen={isActive}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.title}>
-                  <a href={item.url}>
+                  <Link href={item.url}>
                     {!!item.icon && <item.icon className="size-6" />}
                     <span className={isActive ? "font-semibold" : ""}>
                       {item.title}
                     </span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <>
@@ -65,7 +66,7 @@ export const NavSections = ({
                           return (
                             <SidebarMenuSubItem key={subItem.title}>
                               <SidebarMenuSubButton asChild>
-                                <a href={subItem.url}>
+                                <Link href={subItem.url}>
                                   <span
                                     className={
                                       isChildSelected ? "font-semibold" : ""
@@ -73,7 +74,7 @@ export const NavSections = ({
                                   >
                                     {subItem.title}
                                   </span>
-                                </a>
+                                </Link>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           );

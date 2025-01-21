@@ -1,5 +1,10 @@
 "use client";
 
+import React from "react";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,8 +14,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getTitlesAndUrls } from "@/libs/constants";
-import { usePathname } from "next/navigation";
-import React from "react";
 
 export default function AppBreadcrumb() {
   const path = usePathname();
@@ -25,7 +28,9 @@ export default function AppBreadcrumb() {
             return (
               <React.Fragment key={`link_${(title + i).toString()}`}>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href={urls[i]}>{title}</BreadcrumbLink>
+                  <BreadcrumbLink asChild>
+                    <Link href={urls[i]}>{title}</Link>
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
               </React.Fragment>
