@@ -17,10 +17,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavigationRoutes } from "@/libs/constants";
-import { User } from "@supabase/supabase-js";
+import { Tables } from "@/models";
 
 type AppSidebarProps = {
-  user: User;
+  user: Tables<"users">;
 };
 
 export function AppSidebar({

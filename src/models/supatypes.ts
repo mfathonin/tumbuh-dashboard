@@ -403,6 +403,7 @@ export type Database = {
       }
       users: {
         Row: {
+          avatar: string | null
           created_at: string
           deleted_at: string | null
           email: string
@@ -411,6 +412,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          avatar?: string | null
           created_at?: string
           deleted_at?: string | null
           email: string
@@ -419,6 +421,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          avatar?: string | null
           created_at?: string
           deleted_at?: string | null
           email?: string

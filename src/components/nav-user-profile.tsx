@@ -26,9 +26,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { logout } from "@/features/auth";
-import { User } from "@supabase/supabase-js";
+import { Tables } from "@/models";
 
-export function NavUserProfile({ user }: { user: User }) {
+export function NavUserProfile({ user }: { user: Tables<"users"> }) {
   const { isMobile } = useSidebar();
 
   return (
@@ -91,23 +91,18 @@ export function NavUserProfile({ user }: { user: User }) {
   );
 }
 
-const UserProfileDisplay = ({ user }: { user: User }) => {
+const UserProfileDisplay = ({ user }: { user: Tables<"users"> }) => {
   return (
     <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
       <Avatar className="h-8 w-8 rounded-lg">
-        <AvatarImage src={user.email} alt={user.email} />
+        {user.avatar && <AvatarImage src={user.avatar} alt={user.email} />}
         <AvatarFallback className="rounded-lg">
           {user.email?.slice(0, 2).toUpperCase() ?? "CN"}
         </AvatarFallback>
       </Avatar>
       <div className="grid flex-1 text-left text-sm leading-tight">
-        <span className="truncate font-semibold">
-          {user.email?.split("@")[0]}
-        </span>
-        <span className="truncate text-xs">
-          <span className="font-bold">@</span>
-          {user.email?.split("@")[1]}
-        </span>
+        <span className="truncate text-xs text-muted-foreground">Hello,</span>
+        <span className="truncate">{user.name || user.email}</span>
       </div>
     </div>
   );

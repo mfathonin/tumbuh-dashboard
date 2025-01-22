@@ -25,6 +25,7 @@ CREATE TABLE users (
     id UUID PRIMARY KEY,
     name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
+    avatar TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     deleted_at TIMESTAMP
@@ -123,6 +124,23 @@ CREATE TABLE updates_tracking (
     last_updated TIMESTAMP NOT NULL DEFAULT NOW(),
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
+-- Create Trigger on Auth.users insert to copy user profile data
+CREATE OR REPLACE FUNCTION handle_new_user() RETURNS TRIGGER LANGUAGE plpgsql SECURITY DEFINER
+SET search_path = '' AS $$ BEGIN
+INSERT INTO public.users (id, name, email, avatar)
+VALUES (
+        NEW.id,
+        NEW.raw_user_meta_data->>'name',
+        NEW.email,
+        NEW.raw_user_meta_data->>'avatar'
+    );
+RETURN NEW;
+END;
+$$;
+-- trigger the function every time a user is created
+CREATE TRIGGER on_auth_user_created
+AFTER
+INSERT ON auth.users FOR EACH ROW EXECUTE PROCEDURE handle_new_user();
 -- Create Triggers for Each Table to Update `updated_at`  
 CREATE TRIGGER update_users_updated_at BEFORE
 UPDATE ON users FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
