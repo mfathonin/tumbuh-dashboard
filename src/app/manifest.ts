@@ -5,11 +5,12 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "OnBudget | Nararya Labs",
     short_name: "OnBudget",
     description: "Foster Growth",
-    start_url: "/dashboard",
     icons: iconsList.icons,
     theme_color: "#efefef",
     background_color: "#efefef",
+    start_url: "/dashboard",
     display: "standalone",
+    orientation: "portrait",
   };
 }
 
