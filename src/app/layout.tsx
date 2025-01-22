@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "OnBudget",
   description: "Help you to achieve your dreams",
+  appleWebApp: {
+    capable: true,
+    title: "OnBudget",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export default function RootLayout({
